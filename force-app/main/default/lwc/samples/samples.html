@@ -1,0 +1,73 @@
+<template>
+    <section class="slds-grid slds-wrap slds-gutters grid-gap">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+            <lightning-card title="Types">
+                <div class="slds-var-p-horizontal_medium slds-var-p-vertical_small">
+                    <h3 class="slds-text-title_bold">Base</h3>
+
+                    <c-lwc-alert-banner type="base" message="Logged in as John Smith (johnsmith@acme.com)."
+                        link-message="Log out" link="#"></c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Warning</h3>
+                    <c-lwc-alert-banner type="warning"
+                        message="Your browser is outdated. Your Salesforce experience may be degraded."
+                        link-message="More Information" link="#"></c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Error</h3>
+                    <c-lwc-alert-banner type="error"
+                        message="Your browser is outdated. Your Salesforce experience may be degraded."
+                        link-message="More Information" link="#"></c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Offline</h3>
+                    <c-lwc-alert-banner type="offline" message="You are in offline mode."
+                        link-message="More Information" link="#"></c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Info (custom)</h3>
+                    <c-lwc-alert-banner type="info"
+                        message="You Have Lightning Components Debug Mode Enabled. Salesforce is slower in debug mode. Ask your admin how to disable it, or see"
+                        link-message="Enable Debug Mode for Lightning Components." link="#"></c-lwc-alert-banner>
+                </div>
+            </lightning-card>
+        </div>
+
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+            <lightning-card title="Special usage">
+                <div class="slds-var-p-horizontal_medium slds-var-p-vertical_small">
+                    <h3 class="slds-text-title_bold">No parameters</h3>
+                    <c-lwc-alert-banner></c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Add function to the link button</h3>
+                    <c-lwc-alert-banner message="Custom action function" link-message="Test"
+                        button-action={buttonAction}></c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Hide banner when click close</h3>
+                    <c-lwc-alert-banner message="Click close button" hide-on-close></c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Add function to the close button</h3>
+                    <c-lwc-alert-banner message="Custom action function" close-button-action={buttonAction}>
+                    </c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Specify the link</h3>
+                    <c-lwc-alert-banner message="Google search" link-message="Click here" target="_blank"
+                        link="https://www.google.com"></c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Add any content as slot</h3>
+                    <c-lwc-alert-banner>
+                        This is a slot content
+                        <lightning-icon icon-name="doctype:image" alternative-text="Doc image"></lightning-icon>
+                    </c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Capture event</h3>
+                    <c-lwc-alert-banner message="Click close button to show toast" onclose={handleClose}>
+                    </c-lwc-alert-banner>
+
+                    <h3 class="slds-text-title_bold slds-var-m-top_medium">Custom icon</h3>
+                    <c-lwc-alert-banner message="Custom utility icon (recommended)"
+                        icon-name="utility:locker_service_console"></c-lwc-alert-banner>
+                    <c-lwc-alert-banner message="Action icon category also works" icon-name="action:announcement">
+                    </c-lwc-alert-banner>
+                </div>
+            </lightning-card>
+        </div>
+    </section>
+</template>
