@@ -1,24 +1,26 @@
 <template>
-    <div if:true={status.show} class={computeClasses} role="alert">
-        <span class="slds-assistive-text">{computeIconAlternativeText}</span>
-        <span class="slds-icon_container slds-icon-utility-user slds-var-m-right_x-small">
-            <lightning-icon variant={computeIconVariant} icon-name={computeIconName}
-                alternative-text={computeIconAlternativeText} size="x-small"></lightning-icon>
-        </span>
+    <main if:true={status.show} class={mainClass}>
+        <div class={computeClasses} role="alert">
+            <span class="slds-assistive-text">{computeIconAlternativeText}</span>
+            <span class="slds-icon_container slds-icon-utility-user slds-var-m-right_x-small">
+                <lightning-icon variant={computeIconVariant} icon-name={computeIconName}
+                    alternative-text={computeIconAlternativeText} size="x-small"></lightning-icon>
+            </span>
 
-        <slot onslotchange={handleSlotChange}></slot>
+            <slot onslotchange={handleSlotChange}></slot>
 
-        <template if:false={_hasSlot}>
-            <h2 if:true={message}>{message}&nbsp;
-                <a if:true={linkMessage} target={target} onclick={handleClickButton} href={link}>{linkMessage}</a>
-            </h2>
-        </template>
+            <template if:false={_hasSlot}>
+                <h2 if:true={message}>{message}&nbsp;
+                    <a if:true={linkMessage} target={target} onclick={handleClickButton} href={link}>{linkMessage}</a>
+                </h2>
+            </template>
 
-        <div class="slds-notify__close">
-            <lightning-button-icon variant="bare-inverse" title="Close"
-                onclick={handleClickButtonClose} icon-name="utility:close">
-                <label class="slds-assistive-text">Close</label>
-            </lightning-button-icon>
+            <div class="slds-notify__close">
+                <lightning-button-icon variant="bare-inverse" title="Close" onclick={handleClickButtonClose}
+                    icon-name="utility:close">
+                    <label class="slds-assistive-text">Close</label>
+                </lightning-button-icon>
+            </div>
         </div>
-    </div>
+    </main>
 </template>

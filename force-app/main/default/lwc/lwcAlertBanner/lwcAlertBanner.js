@@ -3,18 +3,45 @@
  *                      NOTE: styles doesn't work on local dev environment
  * @group             : Generic Components
  * @author            : samuel@pipelaunch.com
- * @last modified on  : 22-08-2022
+ * @last modified on  : 2023-01-13
  * @last modified by  : samuel@pipelaunch.com
  * @changelog         : 23-07-2022 - Initial version
+ *                      13-01-2023 - Added mainClass and better documentation
  **/
 import { LightningElement, api, track } from "lwc";
 
 import * as utils from "./lwcAlertBannerUtils";
 
 export default class LwcAlertBanner extends LightningElement {
+  /**
+   * @property {string} mainClass CSS classes for the main element.
+   */
+  @api mainClass = "";
+
+  /**
+   * @property {string} link link to be used in the message
+   * @default null
+   * @example "mailto:samuel@pipelaunch.com"
+   */
   @api link = null;
+
+  /**
+   * @property {string} linkMessage message
+   * @default null
+   * @example "Contact us"
+   */
   @api linkMessage = null;
+
+  /**
+   * @property {*} buttonAction a function to be executed when the user clicks the action button
+   * @default null
+   */
   @api buttonAction = null; // function
+
+  /**
+   * @property {*} buttonAction a function to be executed when the user clicks the close button
+   * @default null
+   */
   @api closeButtonAction = null; // function
 
   /**
@@ -30,6 +57,11 @@ export default class LwcAlertBanner extends LightningElement {
     this._message = utils.validateString(value);
   }
 
+  /**
+   * @description icon name to display before the message
+   * @property {string} iconName
+   * @default null
+   */
   @api
   get iconName() {
     return this._iconName;
@@ -42,6 +74,7 @@ export default class LwcAlertBanner extends LightningElement {
   /**
    * @description Propagate events up with bubble and composed to use when the component
    * is nested
+   * @property {boolean} propagateEvents
    * @default false
    */
   @api get propagateEvents() {
@@ -54,6 +87,7 @@ export default class LwcAlertBanner extends LightningElement {
 
   /**
    * @description type of the state. Valid values are: base,warning, error, offline
+   * @property {string} type
    * @default "base"
    */
   @api
@@ -67,6 +101,7 @@ export default class LwcAlertBanner extends LightningElement {
 
   /**
    * @description hide the banner when user clicks close
+   * @property {boolean} hideOnClose
    */
   @api
   get hideOnClose() {
@@ -79,6 +114,7 @@ export default class LwcAlertBanner extends LightningElement {
 
   /**
    * @description target of the html link
+   * @property {string} target
    * @default _self
    */
   @api
@@ -92,7 +128,7 @@ export default class LwcAlertBanner extends LightningElement {
 
   // to control the status of the component
   @track status = {
-    show: true,
+    show: true
   };
 
   /**
@@ -153,16 +189,15 @@ export default class LwcAlertBanner extends LightningElement {
     this._dispatchEvent("close");
   }
 
-
   /**
    * @description dispatch an event to the parent
-   * @param {String} eventName 
+   * @param {String} eventName
    */
   _dispatchEvent(eventName) {
     this.dispatchEvent(
       new CustomEvent(eventName, {
         composed: this.propagateEvents,
-        bubbles: this.propagateEvents,
+        bubbles: this.propagateEvents
       })
     );
   }
